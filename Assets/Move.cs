@@ -27,8 +27,6 @@ public class Move : MonoBehaviour
         rb.MovePosition(transform.position + m_Input * speed);
 
         
-
-        
         
 
     
