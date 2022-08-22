@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,11 +6,11 @@ public class GameManager : MonoBehaviour
     public Ghost[] ghost;
     [SerializeField]
     public Pacman pacman;
-
-
     public Transform pellets;
-    public int score {get; private set;}
+
+    public int score; 
     public int lives {get; private set;}
+    public int ghostMultiplier {get; private set;} = 1;
 
     private void NewGame()
     {
@@ -30,9 +29,20 @@ public class GameManager : MonoBehaviour
         this.lives = lives;
     }
 
+    public void GhostEaten(Ghost ghost)
+    {
+        SetScore(this.score + ghost.points * ghostMultiplier);
+        ghostMultiplier++;
+    }
+
+    public void PacamanEaten()
+    {
+
+    }
+
     private void NewRound()
     {
-        foreach (Transform pellet in this.pellets)
+        foreach (Transform pellet in pellets)
         {
             pellet.gameObject.SetActive(true);
         }
@@ -58,5 +68,43 @@ public class GameManager : MonoBehaviour
         }
 
         this.pacman.gameObject.SetActive(false);
+    }
+
+    public void PelletEaten(Pellets pellet)
+    {
+        pellet.gameObject.SetActive(false);
+        SetScore(score + pellet.points);
+
+        if(!HasRemainingPellets())
+        {
+            pacman.gameObject.SetActive(false);
+            Invoke(nameof(NewRound), 3.0f);
+        }
+    }
+
+    public void PowerPelletEaten(PowerPellet pellet)
+    {
+        // TODO: change ghost state
+        CancelInvoke();        
+        Invoke(nameof(ResetGhostMultiplier), pellet.duration);
+        PelletEaten(pellet);
+
+    }
+
+    private bool HasRemainingPellets()
+    {
+        foreach (Transform pellet in this.pellets)
+        {
+            if (pellet.gameObject.activeSelf) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void ResetGhostMultiplier()
+    {
+        ghostMultiplier = 1;
     }
 }
