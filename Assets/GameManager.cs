@@ -8,9 +8,20 @@ public class GameManager : MonoBehaviour
     public Pacman pacman;
     public Transform pellets;
 
+    private GameObject[] pelletObj;
+    public bool resetSequence; 
+
+    public int pelletCount;
+
     public int score; 
     public int lives {get; private set;}
     public int ghostMultiplier {get; private set;} = 1;
+
+    private void Awake()
+    {
+        pelletObj = GameObject.FindGameObjectsWithTag("Pellet_Tag");
+        
+    }
 
     private void NewGame()
     {
@@ -19,7 +30,7 @@ public class GameManager : MonoBehaviour
         NewRound();
     }
 
-    private void SetScore(int Score)
+    private void SetScore(int score)
     {
         this.score = score;
     }
@@ -42,22 +53,32 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
+        
         foreach (Transform pellet in pellets)
         {
+            
             pellet.gameObject.SetActive(true);
         }
+
+        Debug.Log("New Round Called");
 
         ResetState();
     }
 
     private void ResetState()
     {
-        for (int i = 0; i < this.ghost.Length; i++ )
+        //for (int i = 0; i < this.ghost.Length; i++ )
+        //{
+        //    this.ghost[i].gameObject.SetActive(true);
+        //}
+        
+        foreach (GameObject obj in pelletObj)
         {
-            this.ghost[i].gameObject.SetActive(true);
+            obj.SetActive(true);
         }
 
-        this.pacman.gameObject.SetActive(true);
+        pacman.gameObject.SetActive(true);
+        Invoke(nameof(Flip), 3.1f);
     }
 
     private void GameOver()
@@ -75,11 +96,6 @@ public class GameManager : MonoBehaviour
         pellet.gameObject.SetActive(false);
         SetScore(score + pellet.points);
 
-        if(!HasRemainingPellets())
-        {
-            pacman.gameObject.SetActive(false);
-            Invoke(nameof(NewRound), 3.0f);
-        }
     }
 
     public void PowerPelletEaten(PowerPellet pellet)
@@ -91,20 +107,29 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private bool HasRemainingPellets()
-    {
-        foreach (Transform pellet in this.pellets)
-        {
-            if (pellet.gameObject.activeSelf) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public void ResetGhostMultiplier()
     {
         ghostMultiplier = 1;
+    }
+
+    private void Update()
+    {
+        pelletCount = GameObject.FindGameObjectsWithTag("Pellet_Tag").Length;
+        
+        if (pelletCount < 1) {
+            if (!resetSequence) {
+                pacman.gameObject.SetActive(false);
+                Invoke(nameof(NewRound), 3.0f);  
+            }
+        
+            resetSequence = true;
+        
+        }
+
+    }
+
+    private void Flip()
+    {
+        resetSequence = !resetSequence;
     }
 }

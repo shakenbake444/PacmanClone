@@ -3923,8 +3923,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghost:
   - {fileID: 0}
-  pacman: {fileID: 0}
-  pellets: {fileID: 0}
+  pacman: {fileID: 720851797}
+  pellets: {fileID: 9071786708267129036, guid: 0e8f1afad4f3ba44aaa47ad354bba626, type: 3}
+  resetSequence: 0
+  pelletCount: 0
+  score: 0
 --- !u!1 &1160585125
 GameObject:
   m_ObjectHideFlags: 0
