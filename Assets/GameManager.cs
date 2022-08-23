@@ -16,10 +16,14 @@ public class GameManager : MonoBehaviour
     public int score; 
     public int lives {get; private set;}
     public int ghostMultiplier {get; private set;} = 1;
+    public Vector3 startposition = new Vector3 (0f, -9.5f, 0f);
+    public Quaternion startAngle;
+    
 
     private void Awake()
     {
         pelletObj = GameObject.FindGameObjectsWithTag("Pellet_Tag");
+        startAngle = pacman.transform.rotation;
         
     }
 
@@ -53,15 +57,6 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
-        
-        foreach (Transform pellet in pellets)
-        {
-            
-            pellet.gameObject.SetActive(true);
-        }
-
-        Debug.Log("New Round Called");
-
         ResetState();
     }
 
@@ -78,6 +73,10 @@ public class GameManager : MonoBehaviour
         }
 
         pacman.gameObject.SetActive(true);
+        pacman.movement.SetDirection(Vector2.zero, false);
+        pacman.transform.position = startposition;
+        pacman.transform.localRotation = startAngle;
+        
         Invoke(nameof(Flip), 3.1f);
     }
 
@@ -121,11 +120,8 @@ public class GameManager : MonoBehaviour
                 pacman.gameObject.SetActive(false);
                 Invoke(nameof(NewRound), 3.0f);  
             }
-        
-            resetSequence = true;
-        
+            resetSequence = false;
         }
-
     }
 
     private void Flip()
