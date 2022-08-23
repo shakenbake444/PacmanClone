@@ -9,7 +9,15 @@ public class AnimatedSprite : MonoBehaviour
     public bool loop = true;
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
+        
+        //spriteRenderer = GetComponent<SpriteRenderer>(); 
+
+        if (GetComponent<SpriteRenderer>() == null) {
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        } else {
+            spriteRenderer = GetComponent<SpriteRenderer>(); 
+        }
+
     }
 
     private void Start()
