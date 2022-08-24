@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4a7cf1935d44e21bf0d0215e6bb8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 0
   speedmult: 1
   initdirect: {x: 0, y: 0}
   obstlayer:

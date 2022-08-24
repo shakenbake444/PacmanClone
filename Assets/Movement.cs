@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float speed = 8.0f;
+    public float speed;
     public float speedmult = 1.0f;
     public Vector2 initdirect;
     public LayerMask obstlayer;
@@ -65,4 +64,15 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, obstlayer);
         return hit.collider != null;
     }
+
+    public void Enable()
+    {
+        this.speed = 8.0f;
+    }
+
+    public void Disable()
+    {
+        this.speed = 0.0f;
+    }
+
 }
