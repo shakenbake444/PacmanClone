@@ -130,9 +130,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2681859702347256229, guid: 9d5e52a08853747dba1b85f755c5ec7f, type: 3}
+      propertyPath: duration
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 7312649123917594021, guid: 9d5e52a08853747dba1b85f755c5ec7f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7312649123917594021, guid: 9d5e52a08853747dba1b85f755c5ec7f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -174,12 +178,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7312649123917594023, guid: 9d5e52a08853747dba1b85f755c5ec7f, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 720851792}
+    - target: {fileID: 7312649123917594023, guid: 9d5e52a08853747dba1b85f755c5ec7f, type: 3}
+      propertyPath: initialBehavior
+      value: 
+      objectReference: {fileID: 17434285}
     - target: {fileID: 7312649123917594027, guid: 9d5e52a08853747dba1b85f755c5ec7f, type: 3}
       propertyPath: m_Name
       value: Ghost_Pinky
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d5e52a08853747dba1b85f755c5ec7f, type: 3}
+--- !u!114 &17434285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2681859702347256229, guid: 9d5e52a08853747dba1b85f755c5ec7f, type: 3}
+  m_PrefabInstance: {fileID: 17434284}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bf87d74eaa34d41bacfb367d4075aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &293072655
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,9 +282,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2829539168661143989, guid: 366cc8d0f273b46dc8aec2085a49d1e0, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 720851792}
+    - target: {fileID: 2829539168661143989, guid: 366cc8d0f273b46dc8aec2085a49d1e0, type: 3}
+      propertyPath: initialBehavior
+      value: 
+      objectReference: {fileID: 290591075136383116, guid: 366cc8d0f273b46dc8aec2085a49d1e0, type: 3}
     - target: {fileID: 2829539168661143991, guid: 366cc8d0f273b46dc8aec2085a49d1e0, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2829539168661143991, guid: 366cc8d0f273b46dc8aec2085a49d1e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -400,13 +431,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2916581563666807855, guid: 999c25c075cc94cb19e24f8c24433320, type: 3}
+      propertyPath: duration
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7509077176582017057, guid: 999c25c075cc94cb19e24f8c24433320, type: 3}
       propertyPath: m_Name
       value: Ghost_Inky
       objectReference: {fileID: 0}
+    - target: {fileID: 7509077176582017069, guid: 999c25c075cc94cb19e24f8c24433320, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 720851792}
+    - target: {fileID: 7509077176582017069, guid: 999c25c075cc94cb19e24f8c24433320, type: 3}
+      propertyPath: initialBehavior
+      value: 
+      objectReference: {fileID: 635641257}
     - target: {fileID: 7509077176582017071, guid: 999c25c075cc94cb19e24f8c24433320, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7509077176582017071, guid: 999c25c075cc94cb19e24f8c24433320, type: 3}
       propertyPath: m_LocalPosition.x
@@ -450,6 +493,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 999c25c075cc94cb19e24f8c24433320, type: 3}
+--- !u!114 &635641257 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2916581563666807855, guid: 999c25c075cc94cb19e24f8c24433320, type: 3}
+  m_PrefabInstance: {fileID: 635641256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bf87d74eaa34d41bacfb367d4075aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &640688318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3262,6 +3316,39 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   collider: {fileID: 0}
   movement: {fileID: 0}
+--- !u!114 &787149866 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6221167572393928330, guid: a5375981fc3c44f6bb4dba4174e4ad83, type: 3}
+  m_PrefabInstance: {fileID: 1021521758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48cdf1d4f42c6445985ad5c0baf9c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &801799031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7312649123917594023, guid: 9d5e52a08853747dba1b85f755c5ec7f, type: 3}
+  m_PrefabInstance: {fileID: 17434284}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48cdf1d4f42c6445985ad5c0baf9c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &813100191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7509077176582017069, guid: 999c25c075cc94cb19e24f8c24433320, type: 3}
+  m_PrefabInstance: {fileID: 635641256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48cdf1d4f42c6445985ad5c0baf9c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &862774866
 GameObject:
   m_ObjectHideFlags: 0
@@ -4093,7 +4180,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost:
-  - {fileID: 0}
+  - {fileID: 787149866}
+  - {fileID: 801799031}
+  - {fileID: 801799031}
+  - {fileID: 813100191}
   pacman: {fileID: 720851797}
   pellets: {fileID: 9071786708267129036, guid: 0e8f1afad4f3ba44aaa47ad354bba626, type: 3}
   resetSequence: 0
@@ -4108,6 +4198,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1592682591079762568, guid: a5375981fc3c44f6bb4dba4174e4ad83, type: 3}
+      propertyPath: duration
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 6221167572393928326, guid: a5375981fc3c44f6bb4dba4174e4ad83, type: 3}
       propertyPath: m_Name
       value: Ghost_Clyde
@@ -4156,8 +4250,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6221167572393928330, guid: a5375981fc3c44f6bb4dba4174e4ad83, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 720851792}
+    - target: {fileID: 6221167572393928330, guid: a5375981fc3c44f6bb4dba4174e4ad83, type: 3}
+      propertyPath: initialBehavior
+      value: 
+      objectReference: {fileID: 1021521759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5375981fc3c44f6bb4dba4174e4ad83, type: 3}
+--- !u!114 &1021521759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1592682591079762568, guid: a5375981fc3c44f6bb4dba4174e4ad83, type: 3}
+  m_PrefabInstance: {fileID: 1021521758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bf87d74eaa34d41bacfb367d4075aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1160585125
 GameObject:
   m_ObjectHideFlags: 0

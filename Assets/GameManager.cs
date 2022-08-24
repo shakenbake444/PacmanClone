@@ -3,21 +3,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Ghost[] ghost;
+    public Ghost[]          ghost;
     [SerializeField]
-    public Pacman pacman;
-    public Transform pellets;
+    public Pacman           pacman;
+    public Transform        pellets;
 
-    private GameObject[] pelletObj;
-    public bool resetSequence; 
+    private GameObject[]    pelletObj;
+    public bool             resetSequence; 
 
-    public int pelletCount;
-
-    public int score; 
-    public int lives {get; private set;}
-    public int ghostMultiplier {get; private set;} = 1;
-    public Vector3 startposition = new Vector3 (0f, -9.5f, 0f);
-    public Quaternion startAngle;
+    public int              pelletCount;
+    public int              score; 
+    public int              lives {get; private set;}
+    public int              ghostMultiplier {get; private set;} = 1;
+    public Vector3          startposition = new Vector3 (0f, -9.5f, 0f);
+    public Quaternion       startAngle;
     
 
     private void Awake()
@@ -52,6 +51,15 @@ public class GameManager : MonoBehaviour
 
     public void PacamanEaten()
     {
+        lives--;
+
+        if (lives < 1){
+            GameOver();
+        }
+
+        pacman.gameObject.SetActive(false);
+
+        Invoke(nameof(ResetPacman), 3.0f);
 
     }
 
@@ -62,20 +70,17 @@ public class GameManager : MonoBehaviour
 
     private void ResetState()
     {
-        //for (int i = 0; i < this.ghost.Length; i++ )
-        //{
-        //    this.ghost[i].gameObject.SetActive(true);
-        //}
+        for (int i = 0; i < this.ghost.Length; i++ )
+        {
+            this.ghost[i].ResetState();
+        }
         
         foreach (GameObject obj in pelletObj)
         {
             obj.SetActive(true);
         }
-
-        pacman.gameObject.SetActive(true);
-        pacman.movement.SetDirection(Vector2.zero, false);
-        pacman.transform.position = startposition;
-        pacman.transform.localRotation = startAngle;
+        
+        ResetPacman();
         
         Invoke(nameof(Flip), 3.1f);
     }
@@ -127,5 +132,13 @@ public class GameManager : MonoBehaviour
     private void Flip()
     {
         resetSequence = !resetSequence;
+    }
+
+    private void ResetPacman()
+    {
+        pacman.gameObject.SetActive(true);
+        pacman.movement.SetDirection(Vector2.zero, false);
+        pacman.transform.position = startposition;
+        pacman.transform.localRotation = startAngle;
     }
 }
