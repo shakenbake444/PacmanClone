@@ -11,6 +11,7 @@ public class PowerPellet : MonoBehaviour
     {
         FindObjectOfType<GameManager>().PowerPelletEaten(this);
         //Destroy(this.gameObject);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

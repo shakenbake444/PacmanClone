@@ -22,19 +22,18 @@ public class GameManager : MonoBehaviour
 
     public AudioSource      pacmanAudioSource;
     public AudioSource      cameraAudioSource;
-    public AudioSource      powerPelletAudioSource;
     public AudioClip[]      pelletEatenClip;
     public AudioClip        gameStartMusic;
-    public AudioClip        powerPelletEatenClip;
     public bool             pelletEatenSoundIndex;
-    
+    public PlayPowerPelletSound playPowerPelletSound;
 
     private void Awake()
     {
         pelletObj = GameObject.FindGameObjectsWithTag("Pellet_Tag");
         startAngle = pacman.transform.rotation;
         NewGame();
-        
+
+        playPowerPelletSound = FindObjectOfType<PlayPowerPelletSound>();
         
     }
 
@@ -128,23 +127,16 @@ public class GameManager : MonoBehaviour
 
     public void PowerPelletEaten(PowerPellet powerPellet)
     {
-        powerPelletAudioSource.Play();
+        playPowerPelletSound.PlayPowerPelletSoundMethod();
+
         CancelInvoke(); 
-        Invoke(nameof(DisablePowerPelletAudio), powerPellet.duration);
         
         powerPellet.gameObject.SetActive(false);
         SetScore(score + powerPellet.points);
         // TODO: change ghost state
-        
-          
+
         Invoke(nameof(ResetGhostMultiplier), powerPellet.duration);
-
-        if (!powerPelletAudioSource.gameObject.activeSelf) {
-            powerPelletAudioSource.gameObject.SetActive(true);
-        } //else {
-            
         
-
     }
 
     public void ResetGhostMultiplier()
@@ -175,10 +167,6 @@ public class GameManager : MonoBehaviour
                 enemy.movement.Enable();
             }
         }
-
-        if (powerPelletAudioSource.isPlaying) {
-
-        }
     }
 
     private void Flip()
@@ -194,8 +182,4 @@ public class GameManager : MonoBehaviour
         pacman.transform.localRotation = startAngle;
     }
 
-    private void DisablePowerPelletAudio()
-    {
-        powerPelletAudioSource.gameObject.SetActive(false);
-    }
 }
