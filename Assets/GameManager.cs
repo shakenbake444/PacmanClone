@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Ghost[]          ghost;
+    public SpriteRenderer[] ghostChildren;
     [SerializeField]
     public Pacman           pacman;
     public Transform        pellets;
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
     public AudioClip        gameStartMusic;
     public bool             pelletEatenSoundIndex;
     public PlayPowerPelletSound playPowerPelletSound;
+
+    //public GhostFrightened ghostFrightened;
+        
 
     private void Awake()
     {
@@ -136,6 +140,11 @@ public class GameManager : MonoBehaviour
         // TODO: change ghost state
 
         Invoke(nameof(ResetGhostMultiplier), powerPellet.duration);
+
+        foreach (Ghost enemy in ghost)
+        {
+            enemy.ghostFrightened.Fright();
+        }
         
     }
 
@@ -167,6 +176,7 @@ public class GameManager : MonoBehaviour
                 enemy.movement.Enable();
             }
         }
+
     }
 
     private void Flip()
@@ -182,4 +192,11 @@ public class GameManager : MonoBehaviour
         pacman.transform.localRotation = startAngle;
     }
 
+
+    // static public GameObject getChildGameObject(GameObject fromGameObject, string withName) {
+    //         //Author: Isaac Dart, June-13.
+    //         Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>();
+    //         foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
+    //         return null;
+    //     }
 }

@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        if (this.nextdirection != Vector2.zero)
+        if (nextdirection != Vector2.zero)
         {
             SetDirection(nextdirection);
         }
@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
         if(forced || !Occupied(direction))
         {
             this.direction = direction;
-            this.nextdirection = Vector2.zero;
+            nextdirection = Vector2.zero;
         } else {
             nextdirection = direction;
         }
