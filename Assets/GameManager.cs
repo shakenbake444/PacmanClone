@@ -127,8 +127,8 @@ public class GameManager : MonoBehaviour
 
     public void PowerPelletEaten(PowerPellet powerPellet)
     {
-        playPowerPelletSound.PlayPowerPelletSoundMethod();
-
+        //playPowerPelletSound.PlayPowerPelletSoundMethod();
+        PlaySoundSingleton.Instance.PlaySound();
         CancelInvoke(); 
         
         powerPellet.gameObject.SetActive(false);

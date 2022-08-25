@@ -9,7 +9,7 @@ public class PowerPellet : MonoBehaviour
 
     public void PowerPelletEat()
     {
-        FindObjectOfType<GameManager>().PowerPelletEaten(this);
+       FindObjectOfType<GameManager>().PowerPelletEaten(this);
         //Destroy(this.gameObject);
         
     }
