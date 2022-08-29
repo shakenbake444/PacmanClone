@@ -67,7 +67,7 @@ public class Movement : MonoBehaviour
 
     public void Enable()
     {
-        this.speed = 8.0f;
+        //this.speed = 8.0f;
     }
 
     public void Disable()

@@ -9,7 +9,7 @@ public class GhostChase : GhostBehavior
     }
     private void OnDisable()
     {
-        this.ghost.ghostScatter.PublicEnable();
+        this.ghost.ghostScatter.Enable(this.ghost.ghostScatter.duration);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -10,7 +10,6 @@ public class Ghost : MonoBehaviour
     public GhostScatter     ghostScatter;
     public GhostBehavior    initialBehavior;
     public Transform        target;
-    public Vector3          home;
     public int points = 200;
 
     private void Awake()
@@ -21,8 +20,6 @@ public class Ghost : MonoBehaviour
         ghostScatter    = GetComponent<GhostScatter>();
         ghostFrightened = GetComponent<GhostFrightened>();
 
-        home = GameObject.Find("Ghost_Blinky").transform.position;
-
     }
 
     private void Start()
@@ -32,20 +29,19 @@ public class Ghost : MonoBehaviour
 
     public void ResetState()
     {
-        this.gameObject.SetActive(true);
-        this.movement.ResetState();
+        gameObject.SetActive(true);
+        movement.ResetState();
 
-        // this.ghostFrightened.enabled = false;
+        ghostFrightened.enabled = false;
+        ghostChase.Disable();
+        ghostScatter.Enable(initialBehavior.duration);
         
-        this.ghostChase.Disable();
-        this.ghostScatter.Enable(initialBehavior.duration);
-        
-        if (this.ghostHome != this.initialBehavior) {
-            this.ghostHome.Disable();
+        if (ghostHome != initialBehavior) {
+            ghostHome.Disable();
         }
 
-        if (this.initialBehavior == null) {
-            this.initialBehavior.Enable(initialBehavior.duration);
+        if (initialBehavior != null) {
+            initialBehavior.Enable(initialBehavior.duration);
         }
     }
 
@@ -54,6 +50,10 @@ public class Ghost : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman")) {
             if (this.ghostFrightened.enabled) {
                 FindObjectOfType<GameManager>().GhostEaten(this);
+                //
+                //
+        
+                //
             } else {
                 FindObjectOfType<GameManager>().PacamanEaten();
             }

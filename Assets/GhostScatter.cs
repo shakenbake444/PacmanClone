@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class GhostScatter : GhostBehavior
 {
+    private void OnEnable()
+    {
+        // this.ghost.ghostFrightened.white.enabled = false;
+        // this.ghost
+    }
     private void OnDisable()
     {
         this.ghost.ghostChase.enabled = true;

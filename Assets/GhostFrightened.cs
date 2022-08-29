@@ -8,10 +8,11 @@ public class GhostFrightened : GhostBehavior
     public SpriteRenderer blue;
     public SpriteRenderer white;
 
-    // private void OnDisable()
-    // {
-    //     ghost.ghostScatter.enabled = true;
-    // }
+    private void OnDisable()
+    {
+        this.body.enabled = true;
+        this.white.enabled = false;
+    }
     private void OnEnable()
     {   
         body.enabled = false;
@@ -28,7 +29,7 @@ public class GhostFrightened : GhostBehavior
     {
         if (ghost.ghostChase.enabled)
         {
-            ghost.ghostScatter.PublicEnable();
+            ghost.ghostScatter.Enable(ghost.ghostScatter.duration);
             ghost.ghostChase.Disable();
         }
     }
@@ -44,7 +45,7 @@ public class GhostFrightened : GhostBehavior
     public void SwitchState()
     {
         ghost.ghostScatter.Disable();    
-        ghost.ghostChase.PublicEnable();    
+        ghost.ghostChase.Enable(ghost.ghostChase.duration);    
         ghost.ghostFrightened.Disable();
     }
 
