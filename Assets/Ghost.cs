@@ -10,6 +10,7 @@ public class Ghost : MonoBehaviour
     public GhostScatter     ghostScatter;
     public GhostBehavior    initialBehavior;
     public Transform        target;
+    public Vector3          home;
     public int points = 200;
 
     private void Awake()
@@ -19,6 +20,8 @@ public class Ghost : MonoBehaviour
         ghostChase      = GetComponent<GhostChase>();
         ghostScatter    = GetComponent<GhostScatter>();
         ghostFrightened = GetComponent<GhostFrightened>();
+
+        home = GameObject.Find("Ghost_Blinky").transform.position;
 
     }
 
@@ -32,7 +35,8 @@ public class Ghost : MonoBehaviour
         this.gameObject.SetActive(true);
         this.movement.ResetState();
 
-        this.ghostFrightened.Disable();
+        // this.ghostFrightened.enabled = false;
+        
         this.ghostChase.Disable();
         this.ghostScatter.Enable(initialBehavior.duration);
         

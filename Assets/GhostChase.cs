@@ -1,9 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GhostChase : GhostBehavior
 {
+    private void OnEnable()
+    {
+        this.ghost.ghostScatter.Disable();
+    }
     private void OnDisable()
     {
         this.ghost.ghostScatter.PublicEnable();
@@ -14,7 +17,8 @@ public class GhostChase : GhostBehavior
   
         NodeScript node = other.GetComponent<NodeScript>();
 
-        if (node != null && this.enabled && !this.ghost.ghostFrightened.enabled) {
+        if (node != null && this.enabled) 
+        {
             
             Vector2 direction = Vector2.zero;
             float minDistance = float.MaxValue;

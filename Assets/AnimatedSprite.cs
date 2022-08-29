@@ -7,6 +7,7 @@ public class AnimatedSprite : MonoBehaviour
     public float animationTime = 0.25f;
     public int animationFrame {get; private set;}
     public bool loop = true;
+
     private void Awake()
     {
         
@@ -16,6 +17,7 @@ public class AnimatedSprite : MonoBehaviour
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         } else {
             spriteRenderer = GetComponent<SpriteRenderer>(); 
+            
         }
 
     }
@@ -23,6 +25,7 @@ public class AnimatedSprite : MonoBehaviour
     private void Start()
     {
         InvokeRepeating(nameof(AdvanceSprite), animationTime, animationTime);
+
     }
 
     private void AdvanceSprite()

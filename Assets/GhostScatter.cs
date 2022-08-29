@@ -5,15 +5,16 @@ public class GhostScatter : GhostBehavior
 {
     private void OnDisable()
     {
-        this.ghost.ghostChase.PublicEnable();
+        this.ghost.ghostChase.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
   
-        NodeScript node = other.GetComponent<NodeScript>();
+    NodeScript node = other.GetComponent<NodeScript>();
 
-        if (node != null && this.enabled && !this.ghost.ghostFrightened.enabled) {
+        if (node != null && this.enabled)
+        {
             
             int index = Random.Range(0, node.availableDirections.Count);
 
@@ -29,8 +30,5 @@ public class GhostScatter : GhostBehavior
             this.ghost.movement.SetDirection(node.availableDirections[index]); 
         }
     }
-    //public override void Enable()
-    //{
-    //    this.gameObject.SetActive(false);
-    //}
+
 }

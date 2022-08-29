@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public AudioClip        gameStartMusic;
     public bool             pelletEatenSoundIndex;
     public PlayPowerPelletSound playPowerPelletSound;
+    public NodeScript       _node;
 
     //public GhostFrightened ghostFrightened;
         
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
         NewGame();
 
         playPowerPelletSound = FindObjectOfType<PlayPowerPelletSound>();
+        
         
     }
 
@@ -65,6 +67,12 @@ public class GameManager : MonoBehaviour
     {
         SetScore(this.score + ghost.points * ghostMultiplier);
         ghostMultiplier++;
+        
+        ghost.ghostFrightened.white.enabled = false;
+        Physics2D.IgnoreCollision(pacman.GetComponent<Collider2D>(), ghost.GetComponent<Collider2D>(), true);
+
+        FindHome(ghost);
+        
     }
 
     public void PacamanEaten()
@@ -143,7 +151,13 @@ public class GameManager : MonoBehaviour
 
         foreach (Ghost enemy in ghost)
         {
-            enemy.ghostFrightened.Fright();
+            if (enemy.ghostChase.enabled)
+            {
+                enemy.ghostChase.Disable();
+                enemy.ghostFrightened.PublicEnable();
+            } else {
+                enemy.ghostFrightened.PublicEnable();
+            }
         }
         
     }
@@ -192,11 +206,34 @@ public class GameManager : MonoBehaviour
         pacman.transform.localRotation = startAngle;
     }
 
+    private void FindHome(Ghost _ghost)
+    {
+        _ghost.ghostChase.enabled = false;
+        _ghost.ghostScatter.enabled = false;
+        _ghost.movement.speed = 100f;
+        Debug.Log("find home");
+        if (_node != null) 
+        {
+            Debug.Log("inloo;");
+            Vector2 direction = Vector2.zero;
+            float minDistance = float.MaxValue;
 
-    // static public GameObject getChildGameObject(GameObject fromGameObject, string withName) {
-    //         //Author: Isaac Dart, June-13.
-    //         Transform[] ts = fromGameObject.transform.GetComponentsInChildren<Transform>();
-    //         foreach (Transform t in ts) if (t.gameObject.name == withName) return t.gameObject;
-    //         return null;
-    //     }
+            foreach (Vector2 availableDirection in _node.availableDirections)
+            {
+                Vector3 newPosition =_ghost.transform.position + new Vector3(availableDirection.x, availableDirection.y, 0f);
+                float distance = (_ghost.home - newPosition).sqrMagnitude;
+                
+                if (distance < minDistance)
+                {
+                    direction = availableDirection;
+                    minDistance = distance;
+                }
+
+            }
+
+            _ghost.movement.SetDirection(direction); 
+
+        }
+        //Physics2D.IgnoreCollision(pacman.GetComponent<Collider2D>(), _ghost.GetComponent<Collider2D>(), false);
+    }
 }

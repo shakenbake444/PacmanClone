@@ -8,25 +8,45 @@ public class GhostFrightened : GhostBehavior
     public SpriteRenderer blue;
     public SpriteRenderer white;
 
-    private GameManager gameManager;
+    // private void OnDisable()
+    // {
+    //     ghost.ghostScatter.enabled = true;
+    // }
+    private void OnEnable()
+    {   
+        body.enabled = false;
+        white.enabled = true;
+        ghost.ghostScatter.enabled = true;
+        ghost.ghostChase.enabled = false;
 
-    private void Awake()
-    {
-        //gameManager = FindObjectOfType<GameManager>().
+        CancelInvoke();
+        Invoke(nameof(Normal), ghost.ghostFrightened.duration);
+        Invoke(nameof(SwitchState), ghost.ghostScatter.duration + 0.5f);
     }
 
     private void Update()
     {
-        //powerPellet.
-    }
-
-    public void Fright()
-    {
-        body.enabled = false;
+        if (ghost.ghostChase.enabled)
+        {
+            ghost.ghostScatter.PublicEnable();
+            ghost.ghostChase.Disable();
+        }
     }
 
     public void Normal()
-    {
+    {   
+        body.enabled = true;
+        white.enabled = false;
+        ghost.ghostScatter.enabled = true;    
 
     }
+
+    public void SwitchState()
+    {
+        ghost.ghostScatter.Disable();    
+        ghost.ghostChase.PublicEnable();    
+        ghost.ghostFrightened.Disable();
+    }
+
+
 }
