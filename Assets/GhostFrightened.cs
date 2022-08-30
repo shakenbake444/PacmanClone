@@ -7,11 +7,14 @@ public class GhostFrightened : GhostBehavior
     public SpriteRenderer eyes;
     public SpriteRenderer blue;
     public SpriteRenderer white;
+    public Pacman         pacman;
 
     private void OnDisable()
     {
         this.body.enabled = true;
         this.white.enabled = false;
+        Physics2D.IgnoreCollision(pacman.GetComponent<Collider2D>(), ghost.GetComponent<Collider2D>(), false);
+
     }
     private void OnEnable()
     {   

@@ -26,11 +26,7 @@ public class GameManager : MonoBehaviour
     public AudioClip[]      pelletEatenClip;
     public AudioClip        gameStartMusic;
     public bool             pelletEatenSoundIndex;
-    public PlayPowerPelletSound playPowerPelletSound;
-    public NodeScript       _node;
-
-    //public GhostFrightened ghostFrightened;
-        
+    public PlayPowerPelletSound playPowerPelletSound;        
 
     private void Awake()
     {
@@ -39,7 +35,7 @@ public class GameManager : MonoBehaviour
         NewGame();
 
         playPowerPelletSound = FindObjectOfType<PlayPowerPelletSound>();
-                
+        
     }
 
     private void NewGame()
@@ -47,7 +43,7 @@ public class GameManager : MonoBehaviour
         SetScore(0);
         SetLives(3);
 
-        //cameraAudioSource.PlayOneShot(gameStartMusic);
+        cameraAudioSource.PlayOneShot(gameStartMusic);
         
         //NewRound();
     }
@@ -68,9 +64,10 @@ public class GameManager : MonoBehaviour
         ghostMultiplier++;
         
         ghost.ghostFrightened.white.enabled = false;
+        ghost.ghostFrightened.body.enabled = false;
+
         Physics2D.IgnoreCollision(pacman.GetComponent<Collider2D>(), ghost.GetComponent<Collider2D>(), true);
 
-        //FindHome(ghost);
         
     }
 
@@ -144,7 +141,6 @@ public class GameManager : MonoBehaviour
         
         powerPellet.gameObject.SetActive(false);
         SetScore(score + powerPellet.points);
-        // TODO: change ghost state
 
         Invoke(nameof(ResetGhostMultiplier), powerPellet.duration);
 
@@ -189,7 +185,6 @@ public class GameManager : MonoBehaviour
                 enemy.movement.Enable();
             }
         }
-
     }
 
     private void Flip()
@@ -205,43 +200,4 @@ public class GameManager : MonoBehaviour
         pacman.transform.localRotation = startAngle;
     }
 
-    private void FindHome(Ghost _ghost)
-    {
-        _ghost.ghostChase.enabled = false;
-        _ghost.ghostScatter.enabled = false;
-        //_ghost.movement.speed = 100f;
-
-        
-        // if (_node != null) 
-        // {
-        //     Debug.Log("inloop");
-        //     Vector2 direction = Vector2.zero;
-        //     float minDistance = float.MaxValue;
-
-        //     foreach (Vector2 availableDirection in _node.availableDirections)
-        //     {
-        //         Vector3 newPosition =_ghost.transform.position + new Vector3(availableDirection.x, availableDirection.y, 0f);
-        //         float distance = (_ghost.home - newPosition).sqrMagnitude;
-                
-        //         if (distance < minDistance)
-        //         {
-        //             direction = availableDirection;
-        //             minDistance = distance;
-        //         }
-
-        //     }
-
-        //     _ghost.movement.SetDirection(direction); 
-
-        // }
-        //Physics2D.IgnoreCollision(pacman.GetComponent<Collider2D>(), _ghost.GetComponent<Collider2D>(), false);
-    }
-
-    //public void StartCoroutine(Foo(p1,p2));
- 
-//     public void Foo(int param1, int param2)
-//     {
-//         yield WaitForSeconds(timer);
-// //Do stuff
-//     }
 }
