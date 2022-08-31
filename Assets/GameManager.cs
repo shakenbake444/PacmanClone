@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         
         ResetPacman();
         
-        Invoke(nameof(Flip), 3.1f);
+        Invoke(nameof(Flip), 3.05f);
     }
 
     private void GameOver()
@@ -178,9 +178,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         pelletCount = GameObject.FindGameObjectsWithTag("Pellet_Tag").Length;
-        
-        if (pelletCount < 1) {
-            if (!resetSequence) {
+        print(pelletCount);
+
+        if (pelletCount < 2) {
+            
+            if (resetSequence) {
                 pacman.gameObject.SetActive(false);
                 Invoke(nameof(NewRound), 3.0f);  
             }
