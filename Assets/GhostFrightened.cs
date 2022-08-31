@@ -14,6 +14,7 @@ public class GhostFrightened : GhostBehavior
         this.body.enabled = true;
         this.white.enabled = false;
         Physics2D.IgnoreCollision(pacman.GetComponent<Collider2D>(), ghost.GetComponent<Collider2D>(), false);
+        ghost.movement.speedmult = ghost.movement.speedmult * 4f/3f;
 
     }
     private void OnEnable()
@@ -22,6 +23,8 @@ public class GhostFrightened : GhostBehavior
         white.enabled = true;
         ghost.ghostScatter.enabled = true;
         ghost.ghostChase.enabled = false;
+
+        ghost.movement.speedmult = ghost.movement.speedmult * 0.75f;
 
         CancelInvoke();
         Invoke(nameof(Normal), ghost.ghostFrightened.duration);

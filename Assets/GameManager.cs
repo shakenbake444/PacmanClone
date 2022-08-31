@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
 
     public PowerPellet      powerPellet;
 
-    private GameObject[]    pelletObj;
+    public GameObject[]     pelletObj;
+    public GameObject[]    powerPelletObj;
     public bool             resetSequence; 
 
     public int              pelletCount;
@@ -26,16 +27,17 @@ public class GameManager : MonoBehaviour
     public AudioClip[]      pelletEatenClip;
     public AudioClip        gameStartMusic;
     public bool             pelletEatenSoundIndex;
-    public PlayPowerPelletSound playPowerPelletSound;        
+    public PlayPowerPelletSound playPowerPelletSound;  
 
     private void Awake()
     {
         pelletObj = GameObject.FindGameObjectsWithTag("Pellet_Tag");
+        powerPelletObj = GameObject.FindGameObjectsWithTag("Power_Pellet");
         startAngle = pacman.transform.rotation;
         NewGame();
 
         playPowerPelletSound = FindObjectOfType<PlayPowerPelletSound>();
-        
+
     }
 
     private void NewGame()
@@ -44,8 +46,13 @@ public class GameManager : MonoBehaviour
         SetLives(3);
 
         cameraAudioSource.PlayOneShot(gameStartMusic);
-        
-        //NewRound();
+
+        foreach (Ghost enemy in ghost)
+        {
+            enemy.ResetState();
+        }
+
+        ResetState();        
     }
 
     private void SetScore(int Score)
@@ -82,7 +89,6 @@ public class GameManager : MonoBehaviour
         pacman.gameObject.SetActive(false);
 
         Invoke(nameof(ResetPacman), 3.0f);
-
     }
 
     private void NewRound()
@@ -101,6 +107,11 @@ public class GameManager : MonoBehaviour
         {
             obj.SetActive(true);
         }
+
+        foreach (GameObject obj in powerPelletObj)
+        {
+            obj.SetActive(true);
+        }
         
         ResetPacman();
         
@@ -115,6 +126,8 @@ public class GameManager : MonoBehaviour
         }
 
         this.pacman.gameObject.SetActive(false);
+
+        Invoke(nameof(NewGame), 3.0f);
     }
 
     public void PelletEaten(Pellets pellet)

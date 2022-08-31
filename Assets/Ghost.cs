@@ -11,6 +11,7 @@ public class Ghost : MonoBehaviour
     public GhostBehavior    initialBehavior;
     public Transform        target;
     public int points = 200;
+    public Vector3        initialPosition;
 
     private void Awake()
     {
@@ -19,6 +20,8 @@ public class Ghost : MonoBehaviour
         ghostChase      = GetComponent<GhostChase>();
         ghostScatter    = GetComponent<GhostScatter>();
         ghostFrightened = GetComponent<GhostFrightened>();
+
+        initialPosition = GetComponent<Transform>().position;
 
     }
 

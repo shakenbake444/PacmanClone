@@ -4,7 +4,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed;
-    public float speedmult = 1.0f;
+    public float speedmult;
     public Vector2 initdirect;
     public LayerMask obstlayer;
     public Rigidbody2D rb;
@@ -33,7 +33,6 @@ public class Movement : MonoBehaviour
 
     public void ResetState()
     {
-        speedmult = 1.0f;
         direction = initdirect;
         nextdirection = Vector2.zero;
         transform.position = startingposition;

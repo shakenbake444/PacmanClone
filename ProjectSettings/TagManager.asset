@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Audio
   - Pellet_Tag
+  - Power_Pellet
   layers:
   - Default
   - TransparentFX
